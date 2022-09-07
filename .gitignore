@@ -1,0 +1,7 @@
+# todos os arquivos em csv
+*.csv
+
+#todos os arquivos checkpoint
+.ipynb_checkpoints/
+
+
