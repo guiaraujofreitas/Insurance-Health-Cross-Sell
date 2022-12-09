@@ -1,12 +1,23 @@
 import pickle
 import pandas as pd
 import requests
+import xgboost as xgb
 from flask import Flask, request, Response
+
 
 #collecting the past archive and imnport class
 from insurance.Insurance import Insurance
 
-model = pickle.load(open('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_insurance.pkl','rb' ) )
+
+model = xgb.XGBClassifier()
+
+model.load_model('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_cross_sell.json')
+
+
+#model2 = xgb.XGBRegressor()
+#model2.load_model("model_sklearn.json")
+#model = pickle.load(open('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_health_insurance.pkl','rb' ) )
+#model = pickle.load(open('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_insurance.pkl','rb' ) )
 
 
 #start api
@@ -32,19 +43,25 @@ def insurance_predict():
         
         pipeline = Insurance()
         
+        
         df1 = pipeline.cleaniing_data(test_row)
+        
         
         df2 = pipeline.feature_engineering(df1)
         
+        
         df3 = pipeline.data_preparation(df2)
+        
         
         #predict of probability
         df_response= pipeline.get_prediction(model, df3)
-    
+       
         return df_response
     
     else: #If case empty
         return Response( '{}', status=200, mimetype='application/json')
+        
 
 if __name__ == '_main_':
     app.run('0.0.0.0')
+
