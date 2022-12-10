@@ -25,7 +25,7 @@ def insurance_predict():
     
     if test_json: #In there is data
         
-        if isintance(test_json, dict): #unique example
+        if isinstance(test_json, dict): #unique example
             #in case there is only row
             test_row = pd.DataFrame(test_json, index=[0] )
             
@@ -37,7 +37,7 @@ def insurance_predict():
         
         pipeline = Insurance()
         
-        df1 = pipeline.cleaniing_data(test_row)
+        df1 = pipeline.cleaning_data(test_row)
         
         df2 = pipeline.feature_engineering(df1)
         
