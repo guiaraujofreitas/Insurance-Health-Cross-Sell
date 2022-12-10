@@ -1,3 +1,4 @@
+import os
 import pickle
 import pandas as pd
 import requests
@@ -12,13 +13,6 @@ from insurance.Insurance import Insurance
 model = xgb.XGBClassifier()
 
 model.load_model('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_cross_sell.json')
-
-
-#model2 = xgb.XGBRegressor()
-#model2.load_model("model_sklearn.json")
-#model = pickle.load(open('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_health_insurance.pkl','rb' ) )
-#model = pickle.load(open('/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/model/model_insurance.pkl','rb' ) )
-
 
 #start api
 app = Flask(__name__)
@@ -43,15 +37,11 @@ def insurance_predict():
         
         pipeline = Insurance()
         
-        
         df1 = pipeline.cleaniing_data(test_row)
-        
         
         df2 = pipeline.feature_engineering(df1)
         
-        
         df3 = pipeline.data_preparation(df2)
-        
         
         #predict of probability
         df_response= pipeline.get_prediction(model, df3)
@@ -60,8 +50,9 @@ def insurance_predict():
     
     else: #If case empty
         return Response( '{}', status=200, mimetype='application/json')
-        
-
-if __name__ == '_main_':
-    app.run('0.0.0.0')
+    
+    
+if __name__ == '__main__':
+    port = os.environ.get( 'PORT', 5000 )
+    app.run( host = '0.0.0.0', port=port )
 
