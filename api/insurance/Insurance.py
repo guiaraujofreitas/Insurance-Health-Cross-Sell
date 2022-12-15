@@ -6,10 +6,15 @@ import pickle
 from sklearn.preprocessing import MinMaxScaler,StandardScaler
  
 
-class Insurance(object):
-    def _init_( self ):
+class Insurance(object): 
+    def __init__( self ):
+
         self.home_path = '/home/guilherme/Documentos/repos/pa_health_cross_sell/projeto/'
         self.annual_premium_scaler = pickle.load(open ( self.home_path + 'parameter/annual_premium_scaler.pkl','rb' ) )
+        self.target_region_code_scaler = pickle.load(open (self.home_path + 'parameter/target_region_code_scaler.pkl','rb' ) )
+        self.fre_policy_channel_scaler = pickle.load(open (self.home_path + 'parameter/fre_policy_channel_scaler.pkl','rb' ) )
+        self.fre_vehicle_age_scaler = pickle.load(open (self.home_path + 'parameter/fre_vehicle_age_scaler.pkl','rb' ) )
+        self.target_gender_sclaer = pickle.load(open (self.home_path + 'parameter/target_gender_scaler.pkl','rb' ) )
         self.age_scaler = pickle.load(open (self.home_path + 'parameter/age_scaler.pkl','rb') )
         self.vintage_scaler = pickle.load(open (self.home_path + 'parameter/vintage_scaler.pkl','rb') )
 
@@ -38,47 +43,54 @@ class Insurance(object):
 
         #convent the colum to type int
         df2['vintage'] = df2['vintage'].astype('int')
+        
+        return df2
 
+#value Miguel, realmente. Não tinah reparado. Obrigado. Pensei que seria algo sobre o index. Pois nas pesquisas apontavam para isso. 
     def data_preparation(self,df3):
         
         #Normalizing the data
-
+                                
+         
         df3['annual_premium'] = self.annual_premium_scaler.transform(df3[['annual_premium']].values)
+        
+    
         
         # =================================== Target Enconding ===================================== #
 
         #making the mean by region code in dataframe
-        target_enconding_region_code = df3.groupby('region_code')['response'].mean()
+        #target_enconding_region_code = df3.groupby('region_code')['response'].mean()
 
         #add new scale in dataframe 
-        df3.loc[:, 'region_code'] = df3['region_code'].map(target_enconding_region_code)
+        #df3.loc[:, 'region_code'] = df3['region_code'].map(target_enconding_region_code)
+        df3.loc[:, 'region_code'] = df3['region_code'].map(self.target_region_code_scaler)
 
         # =============================== Frequency ===============================================#
 
         #policy_sales_channel / frenquecy between dataset
 
         #new variable with the frequency in dataset
-        fre_policy_sales_channel = df3.groupby('policy_sales_channel').size()/ len(df3)
+        #fre_policy_sales_channel = df3.groupby('policy_sales_channel').size()/ len(df3)
 
         # add in dataset the new rescaling
-        df3.loc[:,'policy_sales_channel'] = df3['policy_sales_channel'].map(fre_policy_sales_channel)
-
+        #df3.loc[:,'policy_sales_channel'] = df3['policy_sales_channel'].map(fre_policy_sales_channel)
+        df3.loc[:,'policy_sales_channel'] = df3['policy_sales_channel'].map(self.fre_policy_channel_scaler)
         #====== vehicle_age =========
 
-        fre_vehicle_age = df3.groupby('vehicle_age').size()/ len(df3)
+        #fre_vehicle_age = df3.groupby('vehicle_age').size()/ len(df3)
 
-        df3.loc[:,'vehicle_age'] = df3['vehicle_age'].map(fre_vehicle_age)
+        df3.loc[:,'vehicle_age'] = df3['vehicle_age'].map(self.fre_vehicle_age_scaler)
 
         # ======================================== MinMax Scaler ================================================= #
 
         #Pack to make rescaling
 
 
-        #
-        df3['vintage'] = self_vintage_scaler.transform( df3[['vintage']].values )
+        #                
+        df3['vintage'] = self.vintage_scaler.transform( df3[['vintage']].values )
 
 
-        df3['age'] = self_age_scaler.transform( df3[['age']].values )
+        df3['age'] = self.age_scaler.transform( df3[['age']].values )
         
         ## ===================================== Target Enconder ======================================================= ##
 
@@ -87,7 +99,8 @@ class Insurance(object):
         df3.loc[:,'gender'] = df3['gender'].map(target_gender)
         
         # Features selected with more of 5 percent of importance
-        cols_selected = ['annual_premium','age','region_code','vintage','vehicle_damage','policy_sales_channel','previously_insured']
+        cols_selected =['annual_premium','age','region_code','vintage','vehicle_damage',
+                        'policy_sales_channel','previously_insured']
         
         return df3[cols_selected]
         
