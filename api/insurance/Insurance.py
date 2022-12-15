@@ -46,7 +46,7 @@ class Insurance(object):
         
         return df2
 
-#value Miguel, realmente. Não tinah reparado. Obrigado. Pensei que seria algo sobre o index. Pois nas pesquisas apontavam para isso. 
+
     def data_preparation(self,df3):
         
         #Normalizing the data
@@ -94,28 +94,42 @@ class Insurance(object):
         
         ## ===================================== Target Enconder ======================================================= ##
 
-        target_gender = df3.groupby('gender')['response'].mean()
+        #target_gender = df3.groupby('gender')['response'].mean()
 
-        df3.loc[:,'gender'] = df3['gender'].map(target_gender)
+        df3.loc[:,'gender'] = df3['gender'].map(self.target_gender_sclaer)
         
         # Features selected with more of 5 percent of importance
         cols_selected =['annual_premium','age','region_code','vintage','vehicle_damage',
                         'policy_sales_channel','previously_insured']
         
         return df3[cols_selected]
+    
+    def get_prediction(self,model, original_data,test_data):
         
-        def get_prediction(self,model, original_data,test_data):
+        #prediction
+        pred = model.predict_proba(test_data)
+        
+        #create new feature of score probabilty
+        original_data['proba'] = pred[:,1].tolist()
+        
+        #ordened the values
+        original_data = original_data.sort_values(by='proba',ascending=False)
+            
+        return original_data.to_json(orient = 'records',date_format = 'iso')
+        
+            
+   
             
             #prediction
-            pred = model.predict_proba(test_data)
+            #pred = model.predict_proba(test_data)
             
             #create new feature of score probabilty
-            original_data['proba'] = pred[:,1].tolist()
+            #original_data['proba'] = pred[:,1].tolist()
 
             #ordened the values
-            original_data = original_data.sort_values(by='proba',ascending=False)
+            #original_data = original_data.sort_values(by='proba',ascending=False)
             
-            return original_data.to_json(orient = 'records',date_format = 'iso')
+            #return original_data.to_json(orient = 'records',date_format = 'iso')
             
             
 
