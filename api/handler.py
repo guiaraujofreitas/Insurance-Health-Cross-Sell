@@ -38,13 +38,14 @@ def insurance_predict():
         pipeline = Insurance()
         
         df1 = pipeline.cleaning_data(test_row)
+        print('df1 done')
         
         df2 = pipeline.feature_engineering(df1)
-        
+                      
         df3 = pipeline.data_preparation(df2)
         
         #predict of probability
-        df_response= pipeline.get_prediction(model, df3)
+        df_response= pipeline.get_prediction(model, test_row, df3)
        
         return df_response
     
