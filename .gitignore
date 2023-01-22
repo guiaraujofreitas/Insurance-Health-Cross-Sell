@@ -14,3 +14,6 @@ planejamento
 *.txt
 #problema de negocio
 problema_negocio
+
+#file pyc
+api/insurance/__pycache__/Insurance.cpython-38.pyc
