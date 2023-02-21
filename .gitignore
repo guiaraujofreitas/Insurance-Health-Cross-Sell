@@ -18,8 +18,11 @@ problema_negocio
 #file pyc
 api/insurance/__pycache__/Insurance.cpython-38.pyc
 
+#ignore archive
+.gitignore.save
 #archive of git
 ..gitignore.swp
+
 
 #documents of web
 api_web/
