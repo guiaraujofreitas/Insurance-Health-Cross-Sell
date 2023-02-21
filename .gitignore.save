@@ -1,0 +1,16 @@
+# todos os arquivos em csv
+*.csv
+
+#todos os arquivos checkpoint
+.ipynb_checkpoints/
+
+#arquivos pycache  api
+*.pyc
+
+#arquivo planejamento
+planejamento
+
+#teste
+*.txt
+#problema de negocio
+problema_negocio
