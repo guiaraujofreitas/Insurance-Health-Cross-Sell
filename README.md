@@ -1,6 +1,14 @@
-# Insurance-Health-Cross-Sell
 
-# 1. Problema de Négocio
+![new_cap](https://user-images.githubusercontent.com/78666925/221383064-a86807b9-5fc6-4cca-b525-5a693f96bc90.png)
+
+ <div align="center"> </div>
+
+<h1 align="center"> CLASSIFICAÇÃO DE CLIENTES DA EMPRESA INSURANCE ALL  </h1
+
+<h1 align="center"> <p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO%20&color=GREEN&style=for-the-badge"/></p></h1>
+
+
+# 1 Problema de Négocio
 A Insurance é uma empresa com tradição na venda de seguros de saúde. Entre tanto após chegar na sua fase de maturidade de mercado a empresa está buscando
 oferecer novos produtos aos seus clientes e com isso sempre aumentar sua participação de mercado.
 Então a empresa está querendo oferecer agora para seus clientes seguros veícular. Então Insurance efetuou uma pesquisa com mais de 304 mil clientes s
@@ -91,9 +99,9 @@ o percentual de pessoas interessadas de forma odernada X percentual de pessoas d
 Gráfico de Curva Cumulativo de ganho
 ![curva_aculativa_ganho](https://user-images.githubusercontent.com/78666925/220450973-beb72810-0d1a-4286-a90b-f91585e3cb22.png)
 
-# Resultados Financeiros:
+# 4- Resultados Financeiros:
 
-2. Qual a porcentagem de clientes interessados em seguro veicular, o call center conseguirá contatar fazendo 20 mil ligações?
+* 2-  Qual a porcentagem de clientes interessados em seguro veicular, o call center conseguirá contatar fazendo 20 mil ligações?
 
 A porcentagem de pessoas interessadas são de 12.38% que totaliza uma quantidade de 9437 pessoas interessadas dentro da base de dados das 76 mil pessoas. 
 Como a capacidade de ligações diária do call center é de 20 mil ligações que representa uma porcentagem de 26.24% em relação a toda base.Olhando o 
@@ -111,20 +119,51 @@ de $230,108,724.00. Com isso é possível afirmar que o modelo odernado é 1.50 
 
 **Resposta final:** Porcentagem de pessoas interessdas é de 12.38% e o call center não conseguirá contatar todos os interessados fazendo 20 mil ligações. 
 
-3. Se a capacidade do call center aumentar para 40 mil ligações, qual a porcentagem de clientes interessados em adquirir um seguro veícular o call center
+* 3. Se a capacidade do call center aumentar para 40 mil ligações, qual a porcentagem de clientes interessados em adquirir um seguro veícular o call center
 conseguirá contatar?
 
 Com aumenta da capacidade para 40 mil ligações diárias o percentual em relação a toda base de clientes será de 52.48%. Observando o gráfico de ganho
-de ganho acumulado é possível vê com o modelo odernado é possível contatar 87% das pessoas interessadas que corresponde um total de 8210 clientes. E com
-o modleo aleatório será possivel contatar apenas 4952 pessoas. 
+de ganho acumulado é possível vê com o modelo ordernado é possível contatar 87% das pessoas interessadas que corresponde um total de 8210 clientes. E com
+o modelo aleatório será possivel contatar apenas 4952 pessoas. 
 
-|      Ticket médio   |  Interessados       |    Retorno           | 
-| ------------------- | ------------------- | ------------------- | 
-|  $31,604.00.        |      8210	          |   0.016433          | 
-|  $31,604.00.        |   4952              |   0.08557           | 
-  
+|      Ticket médio   |  Modelo             |    Interessados      |      Retorno        |  
+| ------------------- | ------------------- | -------------------  |---------------------| 
+|  $31,604.00.        |      Aleatório	     |          4952        |  $156,503,008.00    |
+|  $31,604.00.        |      Ordernado      |          8210        |  $259,468,840.00    | 
 
-4. Quantas ligações o call center precisa fazer para contatar 80% dos clientes interessados em adquirir um seguro veicular?
+  Portanto o modelo odernado é 2.52 vezes melhor do que o modelo aleatório. 
 
-# Deploy
+* 4. Quantas ligações o call center precisa fazer para contatar 80% dos clientes interessados em adquirir um seguro veicular?
+
+Observando mais uma vez o gráfico acumulativo de ganho, para atingir 80% da base de cliente da forma aleatória de escolha de clientes são necessárias 60977 ligações para atingir o percentual de 80% de clientes interessados. Entre tanto, com o modelo ordernado, como visto no gráfico (linha laranja) é necessário efetuar apenas 35% das ligações que totalizam 26677 ligações a serem feitas para as pessoas interessados em adquirir o seguro veícular, ou seja, essas são as pessoas mais propensas a comprarem o produto oferecido. Com isso será feito 34300 ligações a menos do que de forma aleatória. 
+
+Então o modelo orrdernado elaborado é 2.22 vezes melhor do que o modelo aleatório. 
+
+# 5- Deploy
+
+O objetivo nesta etapa foi descentralizar a solução de uma máquina local para um ambiente em nuvem para que todos da equipe do call center possam utilizar a ferramenta para que saibam quais são os clientes das suas listas mais propensos a compra do produto oferecido. Para isso foi criado um botão chamado "Prospesity Score", que ao clicar nesta aba é dado de forma ordernado uma nova lista com a pontuação de propensão de compra dos clientes da respectiva lista do atendente. 
+
+Abaixo um vídeo que demostra de forma prática como é feito a solução. 
+
+
 ![deploy_google_sheets](https://user-images.githubusercontent.com/78666925/220597453-d76f2c2c-2573-4767-b04a-ed952adefba9.gif)
+
+# 6- Conclusão
+
+O projeto foi feito com êxito, pois resolver o problema central do cliente qu era saber quais os clientes mais propensos a comprarem o novo produto oferecido. E também teve êxito em responder as perguntas questionadas pelo Gestor do Call Center, onde agora o mesmo pode tomar suas decisões de forma mais assertiva por meio dos dados extraídos. E como consequência dessas soluções implementadas, como visto no tópicop Resultados Financeiros, houve uma redução significativa de números de ligações a serem feitas, como também um aumento da receita da companhia. 
+
+# 7- Lições Aprendidas
+
+Esse projeto foi muito últil para meu aprendizado, pois até então eu não tinha conhecimento o que um projeto de classificação poderia ter duas vertentes. Como classificação por meio de probabildade, onde o foco é indentificar a probabilidade de cada pessoa em adquirir um produto. Já o de ordernaçãop como é deste projeto, o objetivo é colocar em ordem uma lista de pessoas por meio de chances. Em outras palavras esse tipo de projeto solicitar uma criação de um ranking, como foi o caso deste projeto. E tendo conhecimento disto, descobrir que para problemas de negócios diferentes, são necessários métricas diferentes, como algumas métricas utilizadas no projeto como Curva Acumulativa, Precision e entre outras utilizadas. 
+
+# 8- Próximos Passos
+
+Como o projeto foi elaborado por meio do método ciclíco, onde o objetivo é entregar uma solução mais rápido possível a cada etapa feita e posteriomente revisitar e criar melhorias, alguns pontos devem ser melhorados nessa próxima etapa.
+
+* 1 - O dados conceditos são muitos desbalanceados. Então é necessário adotar e testar algum método para equilibrar as classes minoritária com majoritária para tentar melhorar a peformance do modelo. 
+
+* 2- Testar novos enconding nos dados para faciliatr o  aprendizado do algoritmo.
+
+* 3 - Implementar outros modelos de Machine Learning com o objetivo de ter curva da ganho maior em relação a usada nessa primeira fase. 
+
+
