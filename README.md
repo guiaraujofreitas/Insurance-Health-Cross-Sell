@@ -8,7 +8,7 @@
 <h1 align="center"> <p align="center"><img src="http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO%20&color=GREEN&style=for-the-badge"/></p></h1>
 
 
-# 1 Problema de Négocio
+# 1 Problema de Negócio
 A Insurance é uma empresa com tradição na venda de seguros de saúde. Entre tanto após chegar na sua fase de maturidade de mercado a empresa está buscando
 oferecer novos produtos aos seus clientes e com isso sempre aumentar sua participação de mercado.
 Então a empresa está querendo oferecer agora para seus clientes seguros veícular. Então Insurance efetuou uma pesquisa com mais de 304 mil clientes s
